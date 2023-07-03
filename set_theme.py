@@ -2,11 +2,11 @@ import subprocess
 from datetime import datetime, time
 
 
-def run_powershell_command(command: str) -> str:
+def run_powershell_command(cmd: str) -> str:
     """run power shell command"""
     try:
         program_path = r"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
-        proc = subprocess.run([program_path, "-Command", command], capture_output=True, text=True, check=True)
+        proc = subprocess.run([program_path, "-Command", cmd], capture_output=True, text=True, check=True)
         if proc.returncode != 0:
             return proc.stdout
         return proc.stdout
