@@ -6,7 +6,7 @@ def run_powershell_command(command: str) -> str:
     """run power shell command"""
     try:
         program_path = r"C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
-        proc = subprocess.run([program_path, "-Command", command], capture_output=True, text=True)
+        proc = subprocess.run([program_path, "-Command", command], capture_output=True, text=True, check=True)
         if proc.returncode != 0:
             return proc.stdout
         return proc.stdout
@@ -18,7 +18,7 @@ def is_daytime() -> bool:
     daytime_start = time(8,0)
     daytime_end = time(19,0)
     current_time = datetime.now().time()
-    if daytime_start < current_time and current_time < daytime_end:
+    if daytime_start < current_time < daytime_end:
         return 1
     return 0
 
