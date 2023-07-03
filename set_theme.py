@@ -31,6 +31,7 @@ def get_light_theme_values() -> list:
     return result
 
 def get_commands(value: int) -> list:
+    """generate commands with input value (dark or light)"""
     value_names = ["SystemUsesLightTheme", "AppsUseLightTheme"]
     prefix = "New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name"
     suffix = "-Type Dword -Force"
