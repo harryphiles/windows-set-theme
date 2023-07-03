@@ -25,7 +25,7 @@ def is_daytime() -> bool:
 def get_light_theme_values() -> list:
     """get values for Windows light theme settings 1(light) or 0(dark)"""
     value_names = ["SystemUsesLightTheme", "AppsUseLightTheme"]
-    get_command = f"Get-ItemPropertyValue -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name "
+    get_command = r"Get-ItemPropertyValue -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name "
     commands = [get_command + name for name in value_names]
     result = [int(run_powershell_command(command)) for command in commands]
     return result
@@ -33,7 +33,7 @@ def get_light_theme_values() -> list:
 def get_commands(value: int) -> list:
     """generate commands with input value (dark or light)"""
     value_names = ["SystemUsesLightTheme", "AppsUseLightTheme"]
-    prefix = "New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name"
+    prefix = r"New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name"
     suffix = "-Type Dword -Force"
     commands = [" ".join([prefix, name, f"-Value {value}",suffix]) for name in value_names]
     return commands
