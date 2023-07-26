@@ -39,10 +39,18 @@ def get_commands(value: int) -> List[str]:
     commands = [" ".join([prefix, name, f"-Value {value}",suffix]) for name in value_names]
     return commands
 
-def set_theme(theme: int):
+def set_theme(theme: int) -> None:
     """set Windows theme (0 for dark, 1 for light)"""
     for command in get_commands(theme):
         run_powershell_command(command)
+
+def restart_explorer() -> None:
+    """restart Windows Explorer to apply theme changes"""
+    try:
+        restart_command = 'Stop-Process -Name explorer -Force; Start-Sleep -s 2; Start-Process explorer'
+        run_powershell_command(restart_command)
+    except Exception as exc:
+        return exc.__class__, exc
 
 
 if __name__ == "__main__":
@@ -50,3 +58,4 @@ if __name__ == "__main__":
     theme_settings = get_theme_values()
     if desired_theme != sum(theme_settings) / len(theme_settings):
         set_theme(desired_theme)
+        restart_explorer()
