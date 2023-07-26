@@ -23,7 +23,7 @@ def is_daytime() -> bool:
         return 1
     return 0
 
-def get_light_theme_values() -> List[int]:
+def get_theme_values() -> List[int]:
     """get values for Windows light theme settings 1(light) or 0(dark)"""
     value_names = ["SystemUsesLightTheme", "AppsUseLightTheme"]
     get_command = r"Get-ItemPropertyValue -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name "
@@ -41,8 +41,8 @@ def get_commands(value: int) -> List[str]:
 
 
 if __name__ == "__main__":
-    daytime = is_daytime()
-    current_state = get_light_theme_values()
-    if daytime != sum(current_state) / len(current_state):
-        for command in get_commands(daytime):
+    desired_theme = is_daytime()
+    theme_settings = get_theme_values()
+    if desired_theme != sum(theme_settings) / len(theme_settings):
+        for command in get_commands(desired_theme):
             run_powershell_command(command)
