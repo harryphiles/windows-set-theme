@@ -1,5 +1,6 @@
 import subprocess
 from datetime import datetime, time
+from typing import List
 
 
 def run_powershell_command(cmd: str) -> str:
@@ -22,7 +23,7 @@ def is_daytime() -> bool:
         return 1
     return 0
 
-def get_light_theme_values() -> list:
+def get_light_theme_values() -> List[int]:
     """get values for Windows light theme settings 1(light) or 0(dark)"""
     value_names = ["SystemUsesLightTheme", "AppsUseLightTheme"]
     get_command = r"Get-ItemPropertyValue -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name "
@@ -30,7 +31,7 @@ def get_light_theme_values() -> list:
     result = [int(run_powershell_command(command)) for command in commands]
     return result
 
-def get_commands(value: int) -> list:
+def get_commands(value: int) -> List[str]:
     """generate commands with input value (dark or light)"""
     value_names = ["SystemUsesLightTheme", "AppsUseLightTheme"]
     prefix = r"New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name"
