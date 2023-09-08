@@ -16,8 +16,8 @@ def run_powershell_command(cmd: str) -> str:
 
 def is_daytime() -> bool:
     """check whether current time is in the daytime or not"""
-    daytime_start = time(8,0)
-    daytime_end = time(19,0)
+    daytime_start = time(8,0) # daytime start time
+    daytime_end = time(18,0) # daytime end time
     current_time = datetime.now().time()
     if daytime_start < current_time < daytime_end:
         return 1
