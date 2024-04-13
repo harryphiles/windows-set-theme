@@ -58,7 +58,6 @@ def main() -> None:
     if desired_theme != sum(theme_settings) / len(theme_settings):
         set_theme(desired_theme)
         restart_explorer()
-    return
 
 
 if __name__ == "__main__":
