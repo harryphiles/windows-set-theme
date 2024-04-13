@@ -52,10 +52,14 @@ def restart_explorer() -> None:
     except Exception as exc:
         return exc.__class__, exc
 
-
-if __name__ == "__main__":
+def main() -> None:
     desired_theme = is_daytime()
     theme_settings = get_theme_values()
     if desired_theme != sum(theme_settings) / len(theme_settings):
         set_theme(desired_theme)
         restart_explorer()
+    return
+
+
+if __name__ == "__main__":
+    main()
