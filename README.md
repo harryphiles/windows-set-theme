@@ -1,7 +1,8 @@
-# windows-set-theme
-This script sets themes for Windows based on whether the current time is in the daytime or not.
+# Windows Set Theme
+This Python script automatically switches Windows themes based on the time of day, changing between light and dark themes.
 
-If the current time is in the daytime, it sets the values of SystemUsesLightTheme and AppsUseLightTheme to 1, indicating a light theme. If the current time is not in the daytime, it sets the values to 0, indicating a dark theme.
-
-* 1 for light
-* 0 for dark 
+## Features
+When it runs:
+- Switches to the light theme during the day.
+- Switches to the dark theme during the night.
+- Configures both `SystemUsesLightTheme` and `AppsUseLightTheme` registry settings.
