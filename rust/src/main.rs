@@ -55,7 +55,7 @@ fn restart_explorer() {
 fn is_daytime() -> bool {
     let now = Local::now().time();
     let daytime_start = NaiveTime::from_hms_opt(8, 0, 0).expect("Invalid time");
-    let daytime_end = NaiveTime::from_hms_opt(23, 0, 0).expect("Invalid time");
+    let daytime_end = NaiveTime::from_hms_opt(18, 0, 0).expect("Invalid time");
     now > daytime_start && now < daytime_end
 }
 
